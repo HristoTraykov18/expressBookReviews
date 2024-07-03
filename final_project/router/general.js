@@ -47,14 +47,8 @@ public_users.get('/title/:title', function (req, res) {
 
 //  Get book review
 public_users.get('/review/:isbn', function (req, res) {
-    const review = req.params.review;
-
-    for (let id in books) {
-        if (review in books[id]["reviews"]) {
-            res.send(books[id]);
-            break;
-        }
-    }
+  const isbn = req.params.isbn;
+  res.send(books[isbn]["reviews"]);
 });
 
 module.exports.general = public_users;
