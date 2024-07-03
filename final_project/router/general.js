@@ -24,19 +24,37 @@ public_users.get('/isbn/:isbn', function (req, res) {
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
     const author = req.params.author;
-    res.send(books[author]);
+
+    for (let id in books) {
+        if (books[id]["author"] === author) {
+            res.send(books[id]);
+            break;
+        }
+    }
 });
 
 // Get all books based on title
 public_users.get('/title/:title', function (req, res) {
     const title = req.params.title;
-    res.send(books[title]);
+
+    for (let id in books) {
+        if (books[id]["title"] === title) {
+            res.send(books[id]);
+            break;
+        }
+    }
 });
 
 //  Get book review
 public_users.get('/review/:isbn', function (req, res) {
     const review = req.params.review;
-    res.send(books[review]);
+
+    for (let id in books) {
+        if (review in books[id]["reviews"]) {
+            res.send(books[id]);
+            break;
+        }
+    }
 });
 
 module.exports.general = public_users;
